@@ -7,15 +7,17 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.airbnb.epoxy.*
+import eu.dubedout.blanktemplate.R.id.badgeSectionListView
 import kotlinx.android.synthetic.main.badge_section_list.view.*
 import kotlinx.android.synthetic.main.item_badge_section.view.*
 import java.util.*
 
 class BadgeWithHeaderView(context: Context, attributeSet: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0)
-    : LinearLayout(context, attributeSet, defStyleAttr, defStyleRes) {
+    : FrameLayout(context, attributeSet, defStyleAttr, defStyleRes) {
 
     init {
         LayoutInflater.from(context).inflate(R.layout.badge_section_list, this, true)
@@ -33,6 +35,7 @@ class BadgeWithHeaderView(context: Context, attributeSet: AttributeSet? = null, 
         badgeSectionListView.layoutManager = layoutManager
 
         headerEpoxyControler.badgeSectionList = getTestList()
+
     }
 
     private fun getTestList(): List<BadgeSection> = listOf(
