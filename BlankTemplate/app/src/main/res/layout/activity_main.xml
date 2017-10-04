@@ -6,10 +6,11 @@
     android:layout_height="match_parent"
     tools:context="eu.dubedout.blanktemplate.MainActivity">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/activityMainRecycler"
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/activityMainViewPager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+        android:layout_height="match_parent"/>
+
 
 </LinearLayout>
