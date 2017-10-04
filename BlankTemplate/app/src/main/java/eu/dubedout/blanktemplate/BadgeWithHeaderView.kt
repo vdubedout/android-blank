@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import android.widget.ScrollView
 import android.widget.TextView
 import com.airbnb.epoxy.*
 import kotlinx.android.synthetic.main.badge_section_list.view.*
@@ -16,7 +15,7 @@ import kotlinx.android.synthetic.main.item_badge_section.view.*
 import java.util.*
 
 class BadgeWithHeaderView(context: Context, attributeSet: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0)
-    : ScrollView(context, attributeSet, defStyleAttr, defStyleRes) {
+    : LinearLayout(context, attributeSet, defStyleAttr, defStyleRes) {
 
     init {
         LayoutInflater.from(context).inflate(R.layout.badge_section_list, this, true)
