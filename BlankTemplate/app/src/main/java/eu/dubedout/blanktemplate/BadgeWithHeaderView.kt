@@ -73,8 +73,7 @@ data class BadgeSection(val title: String, val items: List<String>)
 
 @EpoxyModelClass(layout = R.layout.item_badge)
 abstract class BadgeModel : EpoxyModel<TextView>() {
-    @EpoxyAttribute
-    var subTitle: String = "badgeName"
+    @EpoxyAttribute var subTitle: String = "badgeName"
 
     override fun bind(view: TextView?) {
         view?.text = subTitle
