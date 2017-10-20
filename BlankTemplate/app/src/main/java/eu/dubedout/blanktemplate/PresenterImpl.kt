@@ -17,7 +17,7 @@ class PresenterImpl : Presenter {
         if (viewStateSubject.hasValue()){
             viewStateObservable
                     .firstElement()
-                    .map { loadItems(it.lastPageFetched, it.itemList) }
+                    .map { loadItems(it.lastPageFetched + 1, it.itemList) }
                     .subscribeOn(Schedulers.io())
                     .subscribe{ viewStateSubject.onNext(it) }
         } else {
