@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
 
         presenter.loadMore()
         disposables += handleListItems()
+        disposables += handleControllerRequestingMoreItems()
     }
 
     private fun handleListItems(): Disposable =
@@ -46,6 +47,12 @@ class MainActivity : AppCompatActivity() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe{ controller.setItems(it.itemList, it.canLoadMore)}
+
+    private fun handleControllerRequestingMoreItems(): Disposable {
+        return controller.shouldLoadMoreObservable
+                .subscribeOn(Schedulers.io())
+                .subscribe { presenter.loadMore() }
+    }
 
 
     override fun onPause() {
