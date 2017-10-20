@@ -30,7 +30,7 @@ class ListController : EpoxyController() {
 
         if (canLoadMore){
             val loadingMoreModel = LoadingMoreViewModel_()
-            loadingMoreModel.id("LoadingMore").addTo(this)
+            loadingMoreModel.id("LoadingMore"+itemList.size).addTo(this)
             loadingMoreModel.spanSizeOverride { totalSpanCount, position, itemCount -> totalSpanCount }
             disposables += loadingMoreModel
                     .loadingMoreObservable
