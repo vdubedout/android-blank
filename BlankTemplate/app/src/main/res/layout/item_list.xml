@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/itemListContainer"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    tools:background="#e0e">
+
+    <TextView
+        android:id="@+id/itemListTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:textAlignment="center"
+        android:background="#aa000000"
+        android:textColor="#fff"
+        android:padding="4dp"
+        tools:text="Salut la companie"
+        />
+
+</FrameLayout>
