@@ -5,9 +5,10 @@ import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 class PresenterImpl : Presenter {
-    private val testingItemList = TestingItems(itemByPage = 20, maxItems = 300)
+    private val testingItemList = TestingItems(itemByPage = 30, maxItems = 1000)
     private val viewStateSubject = BehaviorSubject.create<MainActivityViewState>()
 
     override val viewStateObservable: Observable<MainActivityViewState>
@@ -15,8 +16,9 @@ class PresenterImpl : Presenter {
 
     override fun loadMore() {
         if (viewStateSubject.hasValue()){
-            viewStateObservable
+            viewStateSubject
                     .firstElement()
+                    .delay(1, TimeUnit.SECONDS) // simulate network
                     .map { loadItems(it.lastPageFetched + 1, it.itemList) }
                     .subscribeOn(Schedulers.io())
                     .subscribe{ viewStateSubject.onNext(it) }
@@ -40,7 +42,7 @@ class PresenterImpl : Presenter {
     }
 }
 
-class TestingItems(val itemByPage: Int = 20, val maxItems: Int = 300) {
+class TestingItems(val itemByPage: Int = 30, val maxItems: Int = 1000) {
     private val random = Random()
     private val itemList: Lazy<List<Item>> = loadItems()
     private val pageNumbers: Int = maxItems / itemByPage
