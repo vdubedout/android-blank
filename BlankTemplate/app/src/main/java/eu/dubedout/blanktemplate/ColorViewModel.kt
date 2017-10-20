@@ -3,13 +3,11 @@ package eu.dubedout.blanktemplate
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.airbnb.epoxy.EpoxyAttribute
-import com.airbnb.epoxy.EpoxyHolder
-import com.airbnb.epoxy.EpoxyModelClass
-import com.airbnb.epoxy.EpoxyModelWithHolder
-import kotlinx.android.synthetic.main.item_list.view.*
+import com.airbnb.epoxy.*
+import io.reactivex.subjects.PublishSubject
+import kotlinx.android.synthetic.main.item_list_data.view.*
 
-@EpoxyModelClass(layout = R.layout.item_list)
+@EpoxyModelClass(layout = R.layout.item_list_data)
 abstract class ColorViewModel : EpoxyModelWithHolder<ColorViewModel.Holder>(){
 
     @EpoxyAttribute var title = ""
@@ -28,5 +26,16 @@ abstract class ColorViewModel : EpoxyModelWithHolder<ColorViewModel.Holder>(){
             container = itemView as ViewGroup
             title = itemView.itemListTitle
         }
+    }
+}
+
+
+@EpoxyModelClass(layout = R.layout.item_list_loading_more)
+abstract class LoadingMoreViewModel : EpoxyModel<ViewGroup>(){
+    val loadingMoreObservable: PublishSubject<Boolean> = PublishSubject.create()
+
+    override fun bind(view: ViewGroup?) {
+        super.bind(view)
+        loadingMoreObservable.onNext(true)
     }
 }
