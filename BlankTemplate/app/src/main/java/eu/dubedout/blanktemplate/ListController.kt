@@ -1,12 +1,23 @@
 package eu.dubedout.blanktemplate
 
+import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.RecyclerView
 import com.airbnb.epoxy.EpoxyController
-import io.reactivex.Observable
+import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.subjects.PublishSubject
 
-class ListController : EpoxyController() {
+class ListController<out K : RecyclerView.LayoutManager>
+    constructor(val layoutManager: K) : EpoxyController() {
+
+    init {
+        if (layoutManager is GridLayoutManager){
+            spanCount = layoutManager.spanCount
+            layoutManager.spanSizeLookup = spanSizeLookup
+        }
+    }
+
     private var itemList: List<Item> = listOf()
     private var canLoadMore: Boolean = true
     private var disposables = CompositeDisposable()

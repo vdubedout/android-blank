@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_main.activityMainRecycler as recy
 class MainActivity : AppCompatActivity() {
     private lateinit var presenter: Presenter
     private lateinit var disposables: CompositeDisposable
-    private lateinit var controller: ListController
+    private lateinit var controller: ListController<GridLayoutManager>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,13 +24,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setUpList() {
-        controller = ListController()
+        controller = ListController(GridLayoutManager(this, 3))
         recycler.adapter = controller.adapter
-        val spanCount = 3
-        val layoutManager = GridLayoutManager(this, spanCount)
-        controller.spanCount = spanCount
-        layoutManager.spanSizeLookup = controller.spanSizeLookup
-        recycler.layoutManager = layoutManager
+        recycler.layoutManager = controller.layoutManager
     }
 
     override fun onResume() {
