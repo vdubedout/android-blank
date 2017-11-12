@@ -6,7 +6,6 @@ import android.support.v7.widget.GridLayoutManager
 import android.view.View
 import android.widget.TextView
 import com.airbnb.epoxy.*
-import dagger.Lazy
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.item_badge_section.view.itemBadgeSection
 
@@ -20,11 +19,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         activityMainViewPager.adapter = ViewInjectionPagerAdapter(
-                Lazy { val textView = TextView(this)
+                lazy {
+                    val textView = TextView(this)
                     textView.text = "Swipe to next page"
                     textView
                 },
-                Lazy { BadgeWithHeaderView(this) }
+                lazy { BadgeWithHeaderView(this) }
         )
     }
 }

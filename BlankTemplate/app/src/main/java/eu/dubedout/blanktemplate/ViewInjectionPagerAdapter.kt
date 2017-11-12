@@ -3,7 +3,6 @@ package eu.dubedout.blanktemplate
 import android.support.v4.view.PagerAdapter
 import android.view.View
 import android.view.ViewGroup
-import dagger.Lazy
 import java.util.*
 
 class ViewInjectionPagerAdapter(vararg customView: Lazy<View>) : PagerAdapter() {
@@ -19,7 +18,7 @@ class ViewInjectionPagerAdapter(vararg customView: Lazy<View>) : PagerAdapter() 
     override fun isViewFromObject(view: View, `object`: Any): Boolean = view === `object`
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
-        val customView = viewList[position].get()
+        val customView = viewList[position].value
         container.addView(customView)
         return customView
     }
