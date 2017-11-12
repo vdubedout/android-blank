@@ -32,11 +32,10 @@ class ListController<out K : RecyclerView.LayoutManager>
         disposables = CompositeDisposable()
 
         itemList.forEach {
-            colorView {
-                id(it.title)
-                title(it.title)
-                color(it.color)
-            }
+            ItemListDataBindingModel_()
+                    .id(it.title)
+                    .item(it)
+                    .addTo(this)
         }
 
         if (canLoadMore){

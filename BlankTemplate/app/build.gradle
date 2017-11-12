@@ -27,6 +27,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    dataBinding {
+        enabled = true
+    }
 }
 
 kapt {
@@ -40,7 +44,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:26.1.0'
     compile 'com.android.support:percent:26.1.0'
     compile 'com.android.support:exifinterface:26.1.0'
-    compile 'com.android.support:multidex:1.0.1'
 
     // errors on sub libraries, force dowload latests
     compile 'com.android.support:cardview-v7:26.1.0'
@@ -86,6 +89,8 @@ dependencies {
     compile 'com.airbnb.android:epoxy:2.6.0'
     kapt 'com.airbnb.android:epoxy-processor:2.6.0'
     compile 'com.airbnb.android:epoxy-databinding:2.6.0'
+    
+    kapt 'com.android.databinding:compiler:3.0.0'
 
     /////////\\\\\\\\
     //// USEFULL \\\\
